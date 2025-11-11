@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@radix-ui/react-separator";
@@ -42,8 +43,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import GetTasks from "@/actions/get-task-from-bd";
 
 const Home = () => {
+  const handleGetTasks = async () => {
+    const tasks = await GetTasks();
+    console.log(tasks);
+  };
   return (
     <main className="w-full h-screen bg-gray-100 flex justify-center items-center">
       <Card className="w-lg">
@@ -54,6 +60,10 @@ const Home = () => {
             Cadastrar
           </Button>
         </CardHeader>
+
+        <button className="cursor-pointer" onClick={handleGetTasks}>
+          Buscar tarefas
+        </button>
         <Separator />
         <CardContent>
           <div className="flex gap-2">
